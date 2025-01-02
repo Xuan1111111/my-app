@@ -2,7 +2,7 @@ name: First GitHub Actions Demo
 on: 
   push:
     branches:
-      - feature
+      - master
 
 jobs:
   Build:
@@ -50,6 +50,6 @@ jobs:
       - name: deploy
         uses: JamesIves/github-pages-deploy-action@v4.2.3
         with:
-          branch: gh-pages-feature
+          branch: gh-pages
           folder: build 
           token: "${{ secrets.DEPLOY_TOKEN }}"  
