@@ -52,4 +52,4 @@ jobs:
         with:
           branch: gh-pages
           folder: build 
-          token: "${{ secrets.DEPLOY_TOKEN }}"  
+          token: "${{ secrets.ACCESS_TOKEN }}"  
