@@ -3,10 +3,6 @@ import React from 'react';
 import './App.css';
 
 function App() {
-  const handleChange = (value) => {
-    console.log(`selected ${value}`);
-  };
-
   return (
     <div className="App">
       <header className="App-header">
