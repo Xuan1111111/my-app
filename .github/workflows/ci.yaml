@@ -1,19 +1,36 @@
-name: GitHub Actions Build and Deploy Demo
+name: Build and Deploy
+
 on:
   push:
     branches:
-      - master
+      - main  # 或者你实际使用的主分支，比如 master
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@master
 
-    - name: Build and Deploy
-      uses: JamesIves/github-pages-deploy-action@v4
+    steps:
+    # Step 1: Checkout the repository
+    - name: Checkout code
+      uses: actions/checkout@v3  # 使用最新版本的 checkout action
+
+    # Step 2: Set up Node.js (确保 Node.js 环境已经配置)
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
       with:
-        token: ${{ secrets.ACCESS_TOKEN }}
-        branch: gh-pages
-        floder: build
-        run: npm install && npm run build
+        node-version: '18'  # 使用你需要的 Node.js 版本
+
+    # Step 3: Install dependencies and build the project with Yarn
+    - name: Install dependencies and build
+      run: |
+        yarn install  # 使用 yarn 安装依赖
+        yarn build    # 使用 yarn 构建项目
+
+    # Step 4: Deploy to GitHub Pages
+    - name: Deploy to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@v4.2.3  # 使用稳定版本
+      with:
+        branch: gh-pages  # 部署到 gh-pages 分支
+        folder: build     # 部署的文件夹，这里是 build
+      env:
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}  # 使用 GitHub Secrets 存储的访问令牌
