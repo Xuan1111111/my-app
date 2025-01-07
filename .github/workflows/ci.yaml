@@ -47,6 +47,8 @@ jobs:
         with:
           name: build-pages
           path: build
+      - name: Check build directory
+        run: ls -al build
       - name: deploy
         uses: JamesIves/github-pages-deploy-action@v4.2.3
         with:
