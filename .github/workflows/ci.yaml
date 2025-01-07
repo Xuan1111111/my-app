@@ -32,5 +32,4 @@ jobs:
       with:
         branch: gh-pages  # 部署到 gh-pages 分支
         folder: build     # 部署的文件夹，这里是 build
-      env:
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}  # 使用 GitHub Secrets 存储的访问令牌
+        token: "${{ secrets.ACCESS_TOKEN }}"  
